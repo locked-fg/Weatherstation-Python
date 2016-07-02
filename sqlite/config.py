@@ -7,5 +7,5 @@ HUMIDITY_UID = "hRd"
 TEMPERATURE_UID = "dXC"
 
 SENSORS = ["ambientlight", "airpressure", "humidity", "temperature"]
-SQLITEDB = 'sensors.db'
-OUT_DIR = "./out"
+SQLITEDB = './data/sensors.db'
+OUT_DIR = "./data"

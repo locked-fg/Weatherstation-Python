@@ -1,5 +1,6 @@
 import time
 import sqlite3
+import os
 
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_ambient_light import AmbientLight
@@ -70,6 +71,7 @@ def clean_tables(connection, table):
 
 
 if __name__ == "__main__":
+    os.makedirs(OUT_DIR, exist_ok=True)
     conn = sqlite3.connect(SQLITEDB)
 
     for table in SENSORS:
