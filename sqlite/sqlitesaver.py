@@ -23,7 +23,7 @@ def setup_tables(connection, tablename):
 
 def insert(connection, table, timestamp, value):
     cursor = connection.cursor()
-    cursor.execute("""INSERT INTO %s VALUES (%d, %f)""" % (table, timestamp, value) )
+    cursor.execute("INSERT INTO %s VALUES (%d, %f)" % (table, timestamp, value))
     connection.commit()
 
 
@@ -31,7 +31,7 @@ def ambient(connection, table):
     ipcon = IPConnection()
     al = AmbientLight(AMBIENT_UID, ipcon)
     ipcon.connect(HOST, PORT)
-    value = al.get_illuminance() / 10.0 # Get current illuminance (unit is Lux/10)
+    value = al.get_illuminance() / 10.0  # Get current illuminance (unit is Lux/10)
     insert(connection, table, time.time(), value)
     ipcon.disconnect()
 
@@ -40,7 +40,7 @@ def barometer(connection, table):
     ipcon = IPConnection()
     b = Barometer(BAROMETER_UID, ipcon)
     ipcon.connect(HOST, PORT)
-    value = b.get_air_pressure() / 1000.0 # Get current air pressure (unit is mbar/1000)
+    value = b.get_air_pressure() / 1000.0  # Get current air pressure (unit is mbar/1000)
     insert(connection, table, time.time(), value)
     ipcon.disconnect()
 
@@ -49,7 +49,7 @@ def humidity(connection, table):
     ipcon = IPConnection()
     h = Humidity(HUMIDITY_UID, ipcon)
     ipcon.connect(HOST, PORT)
-    value = h.get_humidity()/10.0
+    value = h.get_humidity() / 10.0
     insert(connection, table, time.time(), value)
     ipcon.disconnect()
 
@@ -58,13 +58,13 @@ def temperature(connection, table):
     ipcon = IPConnection()
     t = Temperature(TEMPERATURE_UID, ipcon)
     ipcon.connect(HOST, PORT)
-    value = t.get_temperature()/100.0
+    value = t.get_temperature() / 100.0
     insert(connection, table, time.time(), value)
     ipcon.disconnect()
 
 
 def clean_tables(connection, table):
-    ts = time.time() - (86400*2)  # 2 days ago
+    ts = time.time() - (86400 * 2)  # 2 days ago
     cursor = connection.cursor()
     cursor.execute("DELETE FROM %s WHERE timestamp < %s" % (table, ts))
     cursor.close()
