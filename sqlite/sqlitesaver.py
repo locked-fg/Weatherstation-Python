@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     for table in SENSORS:
         setup_tables(conn, table)
-        clean_tables(conn, table)
+        # clean_tables(conn, table)
 
     ambient(conn, "ambientlight")
     barometer(conn, "airpressure")
