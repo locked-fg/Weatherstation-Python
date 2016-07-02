@@ -1,4 +1,4 @@
-HOST = "192.168.178.38"
+HOST = "localhost"
 PORT = 4223
 
 AMBIENT_UID = "jzj"
