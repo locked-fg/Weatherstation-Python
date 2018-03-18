@@ -16,7 +16,7 @@ cd /home/pi
 git clone https://github.com/locked-fg/Weatherstation-Python.git Weatherstation
 ```
 
-Optional: Restore data at `~/Weatherstation/sqlite/sensors.db` 
+Optional: Restore data at `~/Weatherstation/data/sensors.db` 
 
 Add entries to crontab 
 ```
