@@ -18,7 +18,7 @@ if __name__ == "__main__":
     rh = h.get_humidity()/10.0
     ts = int(time.time())
     
-    with open('/home/pi/wetterstation/humidity.csv', 'a') as f:
+    with open('/home/pi/Weatherstation/humidity.csv', 'a') as f:
         f.write('{}\t{}\n'.format(ts, rh))
 
     ipcon.disconnect()

@@ -21,7 +21,7 @@ if __name__ == "__main__":
     
     ts = int(time.time())
     
-    with open('/home/pi/wetterstation/ambientlight.csv', 'a') as f:
+    with open('/home/pi/Weatherstation/ambientlight.csv', 'a') as f:
         f.write('{}\t{}\n'.format(ts, illuminance))
 
     ipcon.disconnect()

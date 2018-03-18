@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     ts = int(time.time())
     
-    with open('/home/pi/wetterstation/barometer.csv', 'a') as f:
+    with open('/home/pi/Weatherstation/barometer.csv', 'a') as f:
         f.write('{}\t{}\n'.format(ts, air_pressure))
 
     ipcon.disconnect()
