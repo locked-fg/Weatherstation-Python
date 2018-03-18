@@ -18,7 +18,7 @@ if __name__ == "__main__":
     temperature = t.get_temperature()/100.0
     ts = int(time.time())
     
-    with open('/home/pi/wetterstation/temperature.csv', 'a') as f:
+    with open('/home/pi/Weatherstation/temperature.csv', 'a') as f:
         f.write('{}\t{}\n'.format(ts, temperature))
 
     ipcon.disconnect()
