@@ -5,7 +5,7 @@ import time
 
 HOST = "localhost"
 PORT = 4223
-UID = "jo7" # Change to your UID
+UID = "FbW" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_barometer import Barometer
