@@ -2,17 +2,16 @@
 # -*- coding: utf-8 -*-
 
 import time
-
-HOST = "localhost"
-PORT = 4223
-UID = "hRd" # Change to your UID
+from sqlite.config import HOST
+from sqlite.config import PORT
+from sqlite.config import HUMIDITY_UID
 
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_humidity import Humidity
 
 if __name__ == "__main__":
-    ipcon = IPConnection() # Create IP connection
-    h = Humidity(UID, ipcon) # Create device object
+    ipcon = IPConnection()  # Create IP connection
+    h = Humidity(HUMIDITY_UID, ipcon)  # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     rh = h.get_humidity()/10.0

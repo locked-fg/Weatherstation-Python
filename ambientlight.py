@@ -2,17 +2,16 @@
 # -*- coding: utf-8 -*-
 
 import time
-
-HOST = "localhost"
-PORT = 4223
-UID = "jzj" # Change to your UID
+from sqlite.config import HOST
+from sqlite.config import PORT
+from sqlite.config import AMBIENT_UID
 
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_ambient_light import AmbientLight
 
 if __name__ == "__main__":
-    ipcon = IPConnection() # Create IP connection
-    al = AmbientLight(UID, ipcon) # Create device object
+    ipcon = IPConnection()  # Create IP connection
+    al = AmbientLight(AMBIENT_UID, ipcon)  # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
 
