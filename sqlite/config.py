@@ -2,7 +2,7 @@ HOST = "localhost"
 PORT = 4223
 
 AMBIENT_UID = "jzj"
-BAROMETER_UID = "jo7"
+BAROMETER_UID = "FbW"
 HUMIDITY_UID = "hRd"
 TEMPERATURE_UID = "dXC"
 
