@@ -4,6 +4,7 @@ import json
 import os
 
 from sqlite.config import *
+from datetime import datetime, timedelta
 
 
 def make_table_entry(connection, dbtable):
@@ -39,18 +40,26 @@ def make_series_entry(conn, table):
        strftime('%Y-%m-%d %H', timestamp, 'unixepoch', 'localtime') as date,
        avg(value)
        FROM """ + table + """
-      WHERE timestamp >= """ + str(limit)+ """
-   GROUP BY date
-   ORDER BY date ASC """)
+      WHERE timestamp >= """ + str(limit) + """
+   GROUP BY date """)
     result = cursor.fetchall()
-    return list(map(lambda x: x[1], result))
+    return fill_gaps(result)
+
+
+def fill_gaps(tuples):
+    """
+    creates a list that has values for the last 48 hours and replaces missing values with a default value
+    :param tuples: the cursor (date time string, value)
+    :return: list of values
+    """
+    current_dict = {date_string: value for date_string, value in tuples}
+    expected_keys = map(lambda x: (datetime.now() - timedelta(hours=x)).strftime("%Y-%m-%d %H"), reversed(range(0, 48)))
+    return list(map(lambda x: current_dict.get(x, 0), expected_keys))
 
 
 def make_series(conn):
-    dict = {}
-    for table in SENSORS:
-        dict[table] = make_series_entry(conn, table)
-    text = json.dumps(dict, separators=(',', ': '))
+    result_dict = {table: make_series_entry(conn, table) for table in SENSORS}
+    text = json.dumps(result_dict, separators=(',', ': '))
     with open(OUT_DIR+'/series.json', 'w') as f:
         f.write(text)
 
