@@ -54,7 +54,7 @@ def fill_gaps(tuples):
     """
     current_dict = {date_string: value for date_string, value in tuples}
     expected_keys = map(lambda x: (datetime.now() - timedelta(hours=x)).strftime("%Y-%m-%d %H"), reversed(range(0, 48)))
-    return list(map(lambda x: current_dict.get(x, 0), expected_keys))
+    return list(map(lambda x: current_dict.get(x, 1), expected_keys))
 
 
 def make_series(conn):
