@@ -20,25 +20,28 @@ sudo dpkg -i brickd_linux_latest_armhf.deb
 # Install Weatherstation
 Install Pyton and dependencies
 ```bash
-sudo apt install python3 sqlite python3-setuptools
-sudo easy_install3 pip
+sudo apt install python3 sqlite python3-setuptools python3-pip
+python -m venv venv
+source ~/venv/bin/activate
 pip install tinkerforge
+deactivate
 ```
 Download weatherstation
 ```bash
 cd /home/pi
 git clone https://github.com/locked-fg/Weatherstation-Python.git Weatherstation
+chmod +x ~/Weatherstation/startSqlite.sh
 ```
 
 Optional: Restore data at `~/Weatherstation/data/sensors.db` 
 
 Add entries to crontab 
 ```
-* * * * * ~/Weatherstation/temperature.py
-* * * * * ~/Weatherstation/humidity.py
-* * * * * ~/Weatherstation/ambientlight.py
-* * * * * ~/Weatherstation/barometer.py
-* * * * * ~/Weatherstation/startSqlite.sh
-* * * * * curl -T ~/Weatherstation/data/series.json ftp://[hostname] --user ftplogin:password
-* * * * * curl -T ~/Weatherstation/data/table.json  ftp://[hostname] --user ftplogin:password
+*/2 * * * * ~/venv/bin/python3 ~/Weatherstation/temperature.py
+*/2 * * * * ~/venv/bin/python3 ~/Weatherstation/humidity.py
+*/2 * * * * ~/venv/bin/python3 ~/Weatherstation/ambientlight.py
+*/2 * * * * ~/venv/bin/python3 ~/Weatherstation/barometer.py
+*/2 * * * * ~/Weatherstation/startSqlite.sh
+*/10 * * * * curl -T ~/Weatherstation/data/series.json ftp://[hostname] --user ftplogin:password
+*/10 * * * * curl -T ~/Weatherstation/data/table.json  ftp://[hostname] --user ftplogin:password
 ```

@@ -2,4 +2,7 @@
 /data
 /sqlite/out
 /sqlite/__pycache__
+/venv
+/myenv
+*.csv
 

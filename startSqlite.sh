@@ -2,5 +2,5 @@
 
 export PYTHONPATH="$HOME/Weatherstation"
 cd $HOME/Weatherstation
-python3 ./sqlite/sqlitesaver.py
-python3 ./sqlite/exporter.py
+~/venv/bin/python3 ./sqlite/sqlitesaver.py
+~/venv/bin/python3 ./sqlite/exporter.py
